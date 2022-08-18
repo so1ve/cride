@@ -1,9 +1,11 @@
 {
   "name": "create-isomorphic-destructurable",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@7.9.0",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
-  "contributors": ["Ray <nn_201312@163.com> (@so1ve)"],
+  "contributors": [
+    "Ray <nn_201312@163.com> (@so1ve)"
+  ],
   "description": "Create isomorphic destructurables. Credits to [@antfu](https://antfu.me/posts/destructuring-with-object-or-array).",
   "keywords": [
     "isomorphic",
