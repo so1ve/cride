@@ -1,9 +1,7 @@
-type UnneededArrayProperties = Exclude<keyof any[], typeof Symbol.iterator>;
-
 export function createIsomorphicDestructurable<
   T extends { [key: string]: unknown },
   A extends readonly any[],
-> (obj: T, arr: A): T & Omit<A, UnneededArrayProperties> {
+> (obj: T, arr: A): T & A {
   const clone = { ...obj };
 
   Object.defineProperty(clone, Symbol.iterator, {

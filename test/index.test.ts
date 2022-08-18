@@ -13,8 +13,6 @@ describe("Create Isomorphic Destructurable", () => {
     const { foo: foo1, bar: bar1 } = obj;
     const [foo2, bar2] = obj;
 
-    const { foo, ...rest } = obj;
-
     expect(foo1).toBe(foo);
     expect(foo2).toBe(foo);
     expect(bar1).toBe(bar);
