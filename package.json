@@ -49,13 +49,13 @@
   },
   "scripts": {
     "build": "rimraf dist && pkgroll",
-    "watch": "pkgroll --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "nr build",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "watch": "pkgroll --watch"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.3",
