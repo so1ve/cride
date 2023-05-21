@@ -30,10 +30,8 @@ jobs:
       - name: Install
         run: ni --no-frozen-lockfile
 
-      - name: Stub
-        run: nr stub
-
-      - name: Lint and fix
+      - name: Build
+        run: build      - name: Lint and fix
         run: nr lint:fix
 
       - uses: autofix-ci/action@8bc06253bec489732e5f9c52884c7cace15c0160
