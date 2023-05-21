@@ -31,7 +31,7 @@ jobs:
         run: ni --no-frozen-lockfile
 
       - name: Build
-        run: build
+        run: nr build
 
       - name: Lint and fix
         run: nr lint:fix
