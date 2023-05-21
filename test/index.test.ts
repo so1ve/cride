@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { createIsomorphicDestructurable } from "../src";
 
-describe("create Isomorphic Destructurable", () => {
+describe("create isomorphic destructurable", () => {
   it("destruct", () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
