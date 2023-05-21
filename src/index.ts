@@ -1,13 +1,14 @@
 export function createIsomorphicDestructurable<
-  T extends { [key: string]: unknown },
+  T extends Record<string, unknown>,
   A extends readonly any[],
-> (obj: T, arr: A): T & A {
+>(obj: T, arr: [...A]): T & A {
   const clone = { ...obj };
 
   Object.defineProperty(clone, Symbol.iterator, {
     enumerable: false,
-    value () {
+    value() {
       let index = 0;
+
       return {
         next: () => ({
           value: arr[index++],
