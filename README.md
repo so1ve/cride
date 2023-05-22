@@ -18,6 +18,20 @@ let { foo, bar } = obj;
 let [foo, bar] = obj;
 ```
 
+## Limitations
+
+The methods of `Object` and `Array` are not supported, and object methods are removed from the type. However, due to typescript limitations, array methods are not removed from the type since doing that would break the type when destructuring.
+
+
+```ts
+import { cride } from "cride";
+
+const a = cride({ a: 1 }, [1, "2"]);
+
+console.log(a.concat); // Oops, undefined!
+```
+
+
 ## License
 
 [MIT](./LICENSE) License © 2022 [Anthony Fu](https://github.com/antfu)

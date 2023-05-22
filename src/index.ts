@@ -12,9 +12,8 @@ type IsomorphicDestructurable<
 > = Pick<
   T & A,
   keyof T | (IsTuple<A> extends true ? NumberKeys<A> : `${number}`)
-> & {
-  [Symbol.iterator]: () => Iterator<A[number]>;
-};
+> &
+  A;
 
 const isNumber = (s: string) => !Number.isNaN(Number(s));
 
