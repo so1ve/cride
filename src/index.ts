@@ -29,9 +29,7 @@ export const cride = <
     get(target, prop) {
       if (prop === Symbol.iterator) {
         // Get the iterator of the array
-        // Fix build: error TS2339: Property 'bind' does not exist on type '[...A][unique symbol]'.
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        return (arr[Symbol.iterator] as any).bind(arr) as any;
+        return arr[Symbol.iterator].bind(arr) as any;
       }
       if (Object.prototype.hasOwnProperty.call(target, prop)) {
         return Reflect.get(target, prop);
