@@ -1,8 +1,10 @@
+import { klona } from "klona/full";
+
 export function createIsomorphicDestructurable<
   T extends Record<string, unknown>,
   A extends readonly any[],
 >(obj: T, arr: [...A]): T & A {
-  const clone = { ...obj };
+  const clone = klona(obj);
 
   Object.defineProperty(clone, Symbol.iterator, {
     enumerable: false,
