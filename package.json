@@ -25,11 +25,6 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    },
-    "./loose": {
-      "types": "./dist/loose.d.ts",
-      "require": "./dist/loose.cjs",
-      "import": "./dist/loose.mjs"
     }
   },
   "main": "./dist/index.cjs",
