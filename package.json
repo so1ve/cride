@@ -57,6 +57,9 @@
     "typecheck": "tsc --noEmit",
     "watch": "pkgroll --watch"
   },
+  "dependencies": {
+    "klona": "^2.0.6"
+  },
   "devDependencies": {
     "@antfu/ni": "^0.21.3",
     "@so1ve/eslint-config": "^0.91.0",
@@ -69,8 +72,5 @@
     "typescript": "^5.0.4",
     "vite": "^4.3.8",
     "vitest": "^0.31.1"
-  },
-  "dependencies": {
-    "klona": "^2.0.6"
   }
 }

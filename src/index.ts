@@ -1,28 +1,45 @@
-import { klona } from "klona/full";
-
-type NumberKeys<T> = {
-  [K in keyof T]: T[K] extends number ? K : never;
-}[keyof T];
-
-export function createIsomorphicDestructurable<
+type _NumberKeys<T> = {
+  [K in keyof T]: K extends `${number}` ? K : never;
+};
+// @ts-expect-error
+type NumberKeys<T> = _NumberKeys<T>[number];
+type IsTuple<T extends readonly any[]> = number extends T["length"]
+  ? false
+  : true;
+type IsomorphicDestructurable<
   T extends Record<string, unknown>,
   A extends readonly any[],
->(obj: T, arr: [...A]): Pick<T & A, keyof T | NumberKeys<A>> {
-  const clone = klona(obj);
+> = Pick<
+  T & A,
+  keyof T | (IsTuple<A> extends true ? NumberKeys<A> : `${number}`)
+> & {
+  [Symbol.iterator]: () => Iterator<A[number]>;
+};
 
-  Object.defineProperty(clone, Symbol.iterator, {
-    enumerable: false,
-    value() {
-      let index = 0;
+const isNumber = (s: string) => !Number.isNaN(Number(s));
 
-      return {
-        next: () => ({
-          value: arr[index++],
-          done: index > arr.length,
-        }),
-      };
+export const createIsomorphicDestructurable = <
+  T extends Record<string, unknown>,
+  A extends readonly any[],
+>(
+  obj: T,
+  arr: [...A],
+): IsomorphicDestructurable<T, A> =>
+  new Proxy(obj, {
+    get(target, prop) {
+      if (prop === Symbol.iterator) {
+        // Get the iterator of the array
+        return arr[Symbol.iterator].bind(arr) as any;
+      }
+      if (Object.prototype.hasOwnProperty.call(target, prop)) {
+        return Reflect.get(target, prop);
+      }
+      if (
+        typeof prop === "string" &&
+        isNumber(prop) &&
+        Number(prop) < arr.length
+      ) {
+        return Reflect.get(arr, prop);
+      }
     },
-  });
-
-  return clone as T & A;
-}
+  }) as any;

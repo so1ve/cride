@@ -15,5 +15,19 @@ describe("create isomorphic destructurable", () => {
     expect(foo2).toBe(foo);
     expect(bar1).toBe(bar);
     expect(bar2).toBe(bar);
+    // make sure it supports array key
+    expect(obj[0]).toBe(foo);
+  });
+
+  it("iterator", () => {
+    const foo = { name: "foo" };
+    const bar = 1024 as const;
+
+    const obj = createIsomorphicDestructurable({ foo, bar }, [foo, bar]);
+
+    // Support iterator
+    const arr = [...obj];
+
+    expect(arr).toEqual([foo, bar]);
   });
 });
