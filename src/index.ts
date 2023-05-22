@@ -18,7 +18,7 @@ type IsomorphicDestructurable<
 
 const isNumber = (s: string) => !Number.isNaN(Number(s));
 
-export const createIsomorphicDestructurable = <
+export const cride = <
   T extends Record<string, unknown>,
   A extends readonly any[],
 >(

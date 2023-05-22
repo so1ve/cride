@@ -2,11 +2,8 @@
   "name": "cride",
   "version": "0.2.0",
   "packageManager": "pnpm@8.5.1",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
-  "contributors": [
-    "Ray <i@mk1.io> (@so1ve)"
-  ],
-  "description": "Create isomorphic destructurables. Credits to [@antfu](https://antfu.me/posts/destructuring-with-object-or-array).",
+  "author": "Ray <i@mk1.io> (@so1ve)",
+  "description": "Create isomorphic destructurables.",
   "keywords": [
     "isomorphic",
     "object",

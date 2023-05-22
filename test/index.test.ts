@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
-import { createIsomorphicDestructurable } from "../src";
+import { cride } from "../src";
 
 describe("create isomorphic destructurable", () => {
   it("destruct", () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
 
-    const obj = createIsomorphicDestructurable({ foo, bar }, [foo, bar]);
+    const obj = cride({ foo, bar }, [foo, bar]);
     const { foo: foo1, bar: bar1 } = obj;
     const [foo2, bar2] = obj;
 
@@ -23,7 +23,7 @@ describe("create isomorphic destructurable", () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
 
-    const obj = createIsomorphicDestructurable({ foo, bar }, [foo, bar]);
+    const obj = cride({ foo, bar }, [foo, bar]);
 
     // Support iterator
     const arr = [...obj];
