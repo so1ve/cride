@@ -1,6 +1,6 @@
-# create-isomorphic-destructurable
+# cride
 
-[![NPM version](https://img.shields.io/npm/v/create-isomorphic-destructurable?color=a1b858&label=)](https://www.npmjs.com/package/create-isomorphic-destructurable)
+[![NPM version](https://img.shields.io/npm/v/cride?color=a1b858&label=)](https://www.npmjs.com/package/cride)
 
 Credits to [@antfu](https://github.com/antfu).
 
