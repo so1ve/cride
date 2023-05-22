@@ -30,4 +30,19 @@ describe("create isomorphic destructurable", () => {
 
     expect(arr).toEqual([foo, bar]);
   });
+
+  it("async iterator", async () => {
+    const foo = { name: "foo" };
+    const bar = 1024 as const;
+
+    const obj = cride({ foo, bar }, [foo, bar]);
+
+    // Support async iterator
+    const arr = [];
+    for await (const item of obj) {
+      arr.push(item);
+    }
+
+    expect(arr).toEqual([foo, bar]);
+  });
 });

@@ -16,6 +16,7 @@ type IsomorphicDestructurable<
   A;
 
 const isNumber = (s: string) => !Number.isNaN(Number(s));
+const SUPPORTED_SYMBOLS = [Symbol.iterator, Symbol.asyncIterator];
 
 export const cride = <
   T extends Record<string, unknown>,
@@ -26,9 +27,13 @@ export const cride = <
 ): IsomorphicDestructurable<T, A> =>
   new Proxy(obj, {
     get(target, prop) {
-      if (prop === Symbol.iterator) {
-        // Get the iterator of the array
-        return arr[Symbol.iterator].bind(arr) as any;
+      if (
+        typeof prop === "symbol" &&
+        SUPPORTED_SYMBOLS.includes(prop) &&
+        prop in arr
+      ) {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+        return arr[prop as any].bind(arr) as any;
       }
       if (Object.prototype.hasOwnProperty.call(target, prop)) {
         return Reflect.get(target, prop);
