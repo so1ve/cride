@@ -1,19 +1,45 @@
-type _NumberKeys<T> = {
-  [K in keyof T]: K extends `${number}` ? K : never;
-};
-// @ts-expect-error
-type NumberKeys<T> = _NumberKeys<T>[number];
-type IsTuple<T extends readonly any[]> = number extends T["length"]
-  ? false
-  : true;
-type IsomorphicDestructurable<
+type RemoveArrayMethods<T> = Omit<
+  T,
+  | "at"
+  | "concat"
+  | "copyWithin"
+  | "entries"
+  | "every"
+  | "fill"
+  | "filter"
+  | "find"
+  | "findIndex"
+  | "findLast"
+  | "findLastIndex"
+  | "flat"
+  | "flatMap"
+  | "forEach"
+  | "includes"
+  | "indexOf"
+  | "join"
+  | "keys"
+  | "lastIndexOf"
+  | "map"
+  | "pop"
+  | "push"
+  | "reduce"
+  | "reduceRight"
+  | "reverse"
+  | "shift"
+  | "slice"
+  | "some"
+  | "sort"
+  | "splice"
+  | "toLocaleString"
+  | "toString"
+  | "unshift"
+  | "values"
+  | "length"
+>;
+export type Cride<
   T extends Record<string, unknown>,
   A extends readonly any[],
-> = Pick<
-  T & A,
-  keyof T | (IsTuple<A> extends true ? NumberKeys<A> : `${number}`)
-> &
-  A;
+> = Pick<T, keyof T> & RemoveArrayMethods<A>;
 
 const isNumber = (s: string) => !Number.isNaN(Number(s));
 const SUPPORTED_SYMBOLS = [Symbol.iterator, Symbol.asyncIterator];
@@ -24,7 +50,7 @@ export const cride = <
 >(
   obj: T,
   arr: [...A],
-): IsomorphicDestructurable<T, A> =>
+): Cride<T, A> =>
   new Proxy(obj, {
     get(target, prop) {
       if (
