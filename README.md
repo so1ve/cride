@@ -14,8 +14,8 @@ const bar = 1024;
 
 const obj = cride({ foo, bar }, [foo, bar]);
 
-let { foo:foo1, bar :bar1} = obj;
-let [foo2, bar2] = obj;
+const { foo: foo1, bar: bar1 } = obj;
+const [foo2, bar2] = obj;
 ```
 
 ## License
