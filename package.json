@@ -5,10 +5,10 @@
   "author": "Ray <i@mk1.io> (@so1ve)",
   "description": "Create isomorphic destructurables.",
   "keywords": [
-    "isomorphic",
-    "object",
     "array",
-    "destruct"
+    "destruct",
+    "isomorphic",
+    "object"
   ],
   "homepage": "https://github.com/so1ve/cride#readme",
   "repository": {
