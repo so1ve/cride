@@ -48,28 +48,28 @@ export const cride = <
   T extends Record<string, unknown>,
   A extends readonly any[],
 >(
-  obj: T,
-  arr: [...A],
+  object: T,
+  array: [...A],
 ): Cride<T, A> =>
-  new Proxy(obj, {
-    get(target, prop) {
+  new Proxy(object, {
+    get(target, property) {
       if (
-        typeof prop === "symbol" &&
-        SUPPORTED_SYMBOLS.includes(prop) &&
-        prop in arr
+        typeof property === "symbol" &&
+        SUPPORTED_SYMBOLS.includes(property) &&
+        property in array
       ) {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        return arr[prop as any].bind(arr) as any;
+        return array[property as any].bind(array) as any;
       }
-      if (Object.prototype.hasOwnProperty.call(target, prop)) {
-        return Reflect.get(target, prop);
+      if (Object.prototype.hasOwnProperty.call(target, property)) {
+        return Reflect.get(target, property);
       }
       if (
-        typeof prop === "string" &&
-        isNumber(prop) &&
-        Number(prop) < arr.length
+        typeof property === "string" &&
+        isNumber(property) &&
+        Number(property) < array.length
       ) {
-        return Reflect.get(arr, prop);
+        return Reflect.get(array, property);
       }
     },
   }) as any;
