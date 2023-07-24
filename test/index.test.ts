@@ -7,42 +7,42 @@ describe("create isomorphic destructurable", () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
 
-    const obj = cride({ foo, bar }, [foo, bar]);
-    const { foo: foo1, bar: bar1 } = obj;
-    const [foo2, bar2] = obj;
+    const object = cride({ foo, bar }, [foo, bar]);
+    const { foo: foo1, bar: bar1 } = object;
+    const [foo2, bar2] = object;
 
     expect(foo1).toBe(foo);
     expect(foo2).toBe(foo);
     expect(bar1).toBe(bar);
     expect(bar2).toBe(bar);
     // make sure it supports array key
-    expect(obj[0]).toBe(foo);
+    expect(object[0]).toBe(foo);
   });
 
   it("iterator", () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
 
-    const obj = cride({ foo, bar }, [foo, bar]);
+    const object = cride({ foo, bar }, [foo, bar]);
 
     // Support iterator
-    const arr = [...obj];
+    const array = [...object];
 
-    expect(arr).toEqual([foo, bar]);
+    expect(array).toEqual([foo, bar]);
   });
 
   it("async iterator", async () => {
     const foo = { name: "foo" };
     const bar = 1024 as const;
 
-    const obj = cride({ foo, bar }, [foo, bar]);
+    const object = cride({ foo, bar }, [foo, bar]);
 
     // Support async iterator
-    const arr = [];
-    for await (const item of obj) {
-      arr.push(item);
+    const array = [];
+    for await (const item of object) {
+      array.push(item);
     }
 
-    expect(arr).toEqual([foo, bar]);
+    expect(array).toEqual([foo, bar]);
   });
 });
